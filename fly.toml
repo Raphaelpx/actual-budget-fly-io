@@ -1,8 +1,17 @@
-app = 'actual-razor'
-primary_region = 'cdg'
+# fly.toml app configuration file generated for orcamento-actual-raphaelpx on 2026-11-06T18:01:08Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'orcamento-actual-raphaelpx'
+primary_region = 'gru'
 
 [build]
   image = 'actualbudget/actual-server:latest'
+
+[[mounts]]
+  source = 'actual_data'
+  destination = '/data'
 
 [http_service]
   internal_port = 5006
@@ -14,9 +23,6 @@ primary_region = 'cdg'
 
 [[vm]]
   memory = '256mb'
+  cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
-
-[mounts]
-  source = 'actual_data'
-  destination = '/data'
